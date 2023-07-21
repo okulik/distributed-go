@@ -8,22 +8,20 @@ import "sync"
 // the returned channel is not guaranteed.
 func Funnel[T any](sources ...<-chan T) <-chan T {
 	dest := make(chan T)
-
 	var wg sync.WaitGroup
-
 	wg.Add(len(sources))
-	for _, source := range sources {
+	for _, src := range sources {
 		go func(c <-chan T) {
 			defer wg.Done()
 			for v := range c {
 				dest <- v
 			}
-		}(source)
+		}(src)
 	}
 
 	go func() {
+		defer close(dest)
 		wg.Wait()
-		close(dest)
 	}()
 
 	return dest
