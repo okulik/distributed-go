@@ -18,8 +18,6 @@ type LRUCache[K comparable, V any] struct {
 
 type EvictedCB[K comparable, V any] func(key K, item *CacheItem[V])
 
-var ErrLRUInternal = fmt.Errorf("lru internal error")
-
 type CacheItem[V any] struct {
 	Value    V
 	Priority int64
