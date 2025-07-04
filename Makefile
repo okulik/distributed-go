@@ -21,7 +21,7 @@ clean: ## Clean build files and artifacts
 	rm -rfv $(GOBIN)
 
 .PHONY: lint
-lint: ## Runs linter on all source code
+lint: tools ## Runs linter on all source code
 	$(DIR).tools/golangci-lint run -v
 	go vet ./...
 
