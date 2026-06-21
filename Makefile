@@ -38,7 +38,7 @@ test-coverage-visualize: ## Creates a test coverage visualization
 	go test -coverprofile=c.out ./... && go tool cover -html=c.out
 
 $(TOOLSBIN)/golangci_lint:  ## Installs golang linter runner
-	$(DIR)scripts/install_golangci_lint $(TOOLSBIN) latest
+	$(DIR)scripts/install_golangci_lint $(TOOLSBIN) v2.12.2
 
 .PHONY: help
 help: ## Creates this help message

@@ -11,7 +11,7 @@ import (
 // and returns a new circuit function that will return an error if the circuit
 // function fails more than failureThreshold times in a row.
 func Breaker[T any](circuit Circuit[T], failureThreshold uint) Circuit[T] {
-	var consecutiveFailures int = 0
+	var consecutiveFailures int
 	var lastAttempt = time.Now()
 	var m sync.RWMutex
 

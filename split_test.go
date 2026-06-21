@@ -24,7 +24,7 @@ func TestSplit(t *testing.T) {
 
 	var wg sync.WaitGroup
 	wg.Add(destinations)
-	var itemsSent []int32 = make([]int32, destinations)
+	var itemsSent = make([]int32, destinations)
 	for i, dest := range dests {
 		go func(i int, dest <-chan int) {
 			defer wg.Done()
